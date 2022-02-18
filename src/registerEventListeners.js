@@ -1,5 +1,6 @@
-import store from './store';
-import * as todoActions from './store/todoActions';
+import store from './redux/store.js';
+import {add, toggle, filter} from './redux/actions.js';
+const {dispatch} = store;
 
 function addListener(eventName, selector, callback) {
   document.body.addEventListener(eventName, e => {
@@ -11,22 +12,22 @@ function addListener(eventName, selector, callback) {
 
 addListener('click', '[data-element="addTodoButton"]', () => {
   const todoInput = document.querySelector('[data-element="addTodoInput"]');
-  store.dispatch(todoActions.add(todoInput.value));
+  dispatch(add(todoInput.value));
 });
 
 addListener('keydown', '[data-element="addTodoInput"]', (e) => {
   if (e.keyCode === 13) {
     const todoInput = document.querySelector('[data-element="addTodoInput"]');
-    todoInput.value && store.dispatch(todoActions.add(todoInput.value));
+    todoInput.value && dispatch(add(todoInput.value));
   }
 });
 
 addListener('click', '[data-element="handleFilters"]', (e) => {
   const filterType = e.target.dataset.id;
-  store.dispatch(todoActions.filter(filterType));
+  dispatch(filter(filterType));
 })
 
 addListener('click', '[data-element="toggleTodo"]', e => {
   const id = Number(e.target.dataset.id);
-  store.dispatch(todoActions.toggle(id));
+  dispatch(toggle(id));
 });

@@ -36,11 +36,12 @@ function renderTodoItem(todo) {
 }
 
 export default (element, state) => {
-  const todos = getFilteredTodos(state);
+  const { todoReducer } = state
+  const todos = getFilteredTodos(todoReducer);
   const todoItems = todos.map(renderTodoItem).join('');
   element.innerHTML = renderApp(
     renderForm(),
-    filters(state.filters),
+    filters(todoReducer.filters),
     renderTodos(todoItems)
   );
 }

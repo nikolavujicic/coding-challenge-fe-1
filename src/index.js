@@ -1,10 +1,9 @@
 import './main.css';
-
-import store from './store';
+import store from './redux/store.js'
 import render from './render';
 import './registerEventListeners';
 
 const rootElement = document.getElementById('demo');
 
-store.subscribe(state => render(rootElement, state));
+store.subscribe(() => render(rootElement, store.getState()));
 render(rootElement, store.getState());
