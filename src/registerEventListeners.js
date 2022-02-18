@@ -21,6 +21,11 @@ addListener('keydown', '[data-element="addTodoInput"]', (e) => {
   }
 });
 
+addListener('click', '[data-element="handleFilters"]', (e) => {
+  const filterType = e.target.dataset.id;
+  store.dispatch(todoActions.filter(filterType));
+})
+
 addListener('click', '[data-element="toggleTodo"]', e => {
   const id = Number(e.target.dataset.id);
   store.dispatch(todoActions.toggle(id));
