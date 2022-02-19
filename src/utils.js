@@ -1,11 +1,10 @@
-export const getFilteredTodos = function (state) {
-    const filterType = state.filters;
+export const getFilteredTodos = function (todos, filterType) {
     switch (filterType) {
         case 'open':
-            return state.todos.filter(todo => !todo.completed)
+            return todos.filter(todo => !todo.completed)
         case 'closed':
-            return state.todos.filter(todo => todo.completed)
+            return todos.filter(todo => todo.completed)
         default:
-            return state.todos
+            return todos
     }
 }
